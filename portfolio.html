@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kostas Detorakis – Junior Developer</title>
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ----------  RESET  ---------- */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ----------  GLOBAL  ---------- */
+        :root {
+            --clr-primary-1: #667eea;
+            --clr-primary-2: #764ba2;
+            --clr-dark-100: #333;
+            --clr-dark-200: #555;
+            --clr-light-100: #fff;
+            --clr-light-200: rgba(255,255,255,.95);
+            --radius-lg: 20px;
+            --radius-md: 15px;
+            --shadow-card: 0 20px 40px rgba(0,0,0,.1);
+            --shadow-hover: 0 20px 40px rgba(102,126,234,.2);
+            --transition: all .3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, var(--clr-primary-1) 0%, var(--clr-primary-2) 100%);
+            min-height: 100vh;
+            color: var(--clr-dark-100);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ----------  NAVBAR  ---------- */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,.85);
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            box-shadow: 0 4px 15px rgba(0,0,0,.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .75rem 2rem;
+            animation: slideDown .8s ease-out;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--clr-dark-100);
+            position: relative;
+            transition: var(--transition);
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2));
+            transition: var(--transition);
+        }
+        nav a:hover {
+            color: var(--clr-primary-2);
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .lang-btn {
+            border: none;
+            background: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2));
+            color: var(--clr-light-100);
+            padding: .4rem .9rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ----------  HEADER  ---------- */
+        header {
+            background: var(--clr-light-200);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            margin: 2rem 0;
+            animation: fadeInUp .8s ease-out;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.25rem;
+            background: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--clr-light-100);
+            box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: .2rem;
+            background: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.15em;
+            color: #666;
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: .6rem 1.2rem;
+            background: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2));
+            color: var(--clr-light-100);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .contact-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102,126,234,.4);
+        }
+
+        /* ----------  SECTIONS  ---------- */
+        section.section {
+            background: var(--clr-light-200);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-card);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all .6s ease-out;
+        }
+        h2 {
+            font-size: 2em;
+            margin-bottom: 1.2rem;
+            color: var(--clr-dark-100);
+            border-bottom: 3px solid;
+            border-image: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2)) 1;
+            padding-bottom: .6rem;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .about-text {
+            font-size: 1.05em;
+            color: var(--clr-dark-200);
+            line-height: 1.8;
+        }
+
+        /* ----------  SKILLS  ---------- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 1.4rem;
+        }
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border-left: 5px solid var(--clr-primary-1);
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+        .skill-tag {
+            background: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2));
+            color: var(--clr-light-100);
+            padding: .3rem .9rem;
+            border-radius: 20px;
+            font-size: .85em;
+            font-weight: 500;
+        }
+
+        /* ----------  PROJECTS  ---------- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: #f8f9fa;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--clr-primary-1);
+            box-shadow: var(--shadow-hover);
+        }
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--clr-primary-1) 0%, var(--clr-primary-2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--clr-light-100);
+        }
+        .project-content { padding: 1.6rem; }
+        .project-title { font-size: 1.3em; font-weight: 600; margin-bottom: .6rem; }
+        .project-description { color: #666; margin-bottom: 1rem; line-height: 1.6; }
+        .tech-tag { background: #e9ecef; color: #495057; padding: .3rem .9rem; border-radius: 12px; font-size: .8em; margin: 2px; font-weight: 500; display: inline-block; }
+        .project-links { display: flex; gap: .6rem; }
+        .project-links a {
+            padding: .5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: .9em;
+            transition: var(--transition);
+        }
+        .btn-demo { background: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2)); color: var(--clr-light-100); }
+        .btn-code { background: #6c757d; color: var(--clr-light-100); }
+        .project-links a:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,.2); }
+
+        /* ----------  EXPERIENCE  ---------- */
+        .timeline {
+            position: relative;
+            margin-left: 1rem;
+            padding-left: 1.5rem;
+        }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg,var(--clr-primary-1),var(--clr-primary-2));
+        }
+        .exp-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .exp-item::before {
+            content: "";
+            position: absolute;
+            left: -11px;
+            top: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--clr-light-100);
+            border: 4px solid var(--clr-primary-1);
+        }
+        .exp-role { font-weight: 600; font-size: 1.1em; }
+        .exp-company { color: var(--clr-primary-2); font-weight: 500; }
+        .exp-period { font-size: .9em; color: var(--clr-dark-200); margin-bottom: .3rem; }
+        .exp-desc { color: var(--clr-dark-200); margin-left: 1rem; line-height: 1.6; }
+        .exp-desc li { margin-bottom: .4rem; }
+
+        /* ----------  CONTACT  ---------- */
+        .contact-form { display: grid; gap: 1.2rem; max-width: 600px; margin: 0 auto; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { margin-bottom: .3rem; font-weight: 500; color: var(--clr-dark-100); }
+        .form-group input, .form-group textarea {
+            padding: .8rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color .3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--clr-primary-1); }
+        .btn-submit {
+            background: linear-gradient(45deg, var(--clr-primary-1), var(--clr-primary-2));
+            color: var(--clr-light-100);
+            padding: .9rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.05em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102,126,234,.4); }
+
+        /* ----------  FOOTER  ---------- */
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: rgba(255,255,255,.85);
+        }
+
+        /* ----------  RESPONSIVE  ---------- */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: .8rem; text-align: center; }
+            nav ul { justify-content: center; }
+            header { padding: 2rem; }
+            h1 { font-size: 2em; }
+        }
+
+        /* ----------  ANIMATIONS  ---------- */
+        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeInUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <!-- ===== Navigation ===== -->
+    <nav>
+        <ul>
+            <li><a href="#about" data-key="nav-about">About</a></li>
+            <li><a href="#skills" data-key="nav-skills">Skills</a></li>
+            <li><a href="#projects" data-key="nav-projects">Projects</a></li>
+            <li><a href="#experience" data-key="nav-experience">Experience</a></li>
+            <li><a href="#contact" data-key="nav-contact">Contact</a></li>
+        </ul>
+        <button id="lang-toggle" class="lang-btn">GR</button>
+    </nav>
+
+    <div class="container">
+        <!-- ===== Header ===== -->
+        <header>
+
+            <div class="profile-img">
+            <!-- Replace the icon with your image -->
+            <img src="files/img_prof.png" alt="Kostas Detorakis" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+            </div>
+            <h1>Kostas Detorakis</h1>
+            <p class="subtitle" data-key="subtitle">Junior Developer</p>
+            <div class="contact-links">
+                <a href="mailto:kostasd.777@gmail.com"><i class="fas fa-envelope"></i> <span data-key="email">Email</span></a>
+                <a href="https://www.linkedin.com/in/kostas-detorakis/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/kdetorakis" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="files/k_detorakis_cv.pdf" target="_blank"><i class="fas fa-download"></i> <span data-key="resume">Resume</span></a>
+            </div>
+        </header>
+
+        <!-- ===== About ===== -->
+        <section id="about" class="section">
+            <h2><i class="fas fa-user"></i> <span data-key="about-title">About Me</span></h2>
+            <p class="about-text" data-key="about-text">
+                I recently graduated from the University of Crete, Department of Computer Science. During my studies, I gained a solid understanding of core computer science concepts and programming skills. For my thesis, I built a full‑stack application with React.js, JavaScript and CSS, implemented RESTful API calls and managed a MySQL database with XAMPP. This journey sharpened my abilities across the full development lifecycle.
+            </p>
+        </section>
+
+        <!-- ===== Skills ===== -->
+        <section id="skills" class="section">
+            <h2><i class="fas fa-tools"></i> <span data-key="skills-title">Technical Skills</span></h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 data-key="skill-frontend">Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-key="skill-backend">Backend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Firebase</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-key="skill-tools">Tools & Others</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Markdown</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Visual Studio</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">XAMPP</span>
+                        <span class="skill-tag">Home Assistant</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Projects ===== -->
+        <section id="projects" class="section">
+            <h2><i class="fas fa-project-diagram"></i> <span data-key="projects-title">Featured Projects</span></h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Steam Clone</h3>
+                        <p class="project-description">
+                            A full‑stack e‑commerce application inspired by Steam with user authentication, product catalogue, cart and secure payments. Built with React for the UI and Node.js / MongoDB for the API.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe API</span>
+                            <span class="tech-tag">JWT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kdetorakis/steam-clone" class="btn-code" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image"><i class="fas fa-hospital"></i></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Hospital Form Database</h3>
+                        <p class="project-description">
+                            Web app for hospitals enabling digital patient forms and secure data storage. Powered by PHP & MySQL with a clean Bootstrap interface.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kdetorakis/Hospital_Form_Database" class="btn-code" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image"><i class="fas fa-user-lock"></i></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Login Version 1</h3>
+                        <p class="project-description">
+                            Lightweight authentication system allowing users to register and log in with encrypted passwords and session handling. Built with Express and MongoDB.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kdetorakis/Login_version_1" class="btn-code" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Experience ===== -->
+        <section id="experience" class="section">
+            <h2><i class="fas fa-briefcase"></i> <span data-key="exp-title">Experience</span></h2>
+            <div class="timeline">
+                <!-- Exp 1 -->
+                <div class="exp-item">
+                    <p class="exp-role" data-key="exp1-role">Junior Software Engineer (Intern)</p>
+                    <p class="exp-company">Intermedia S.A – Heraklion</p>
+                    <p class="exp-period" data-key="exp1-period">July 2023 – October 2023</p>
+                    <ul class="exp-desc" data-key="exp1-desc">
+                        <li>Researched and presented technical topics, including an introduction to Markdown and its practical uses.</li>
+                        <li>Developed a tool to convert PlantUML diagrams into JSON format using TypeScript and Bash scripting.</li>
+                        <li>Introduced Internet of Things (IoT) concepts and demonstrated how to customize Home Assistant to meet specific company requirements.</li>
+                        <li>Developed hands-on experience with tools and technologies including InfluxDB, Grafana, Postman, API integration, and cURL.</li>
+                    </ul>
+                </div>
+                <!-- Exp 2 -->
+                <div class="exp-item">
+                    <p class="exp-role" data-key="exp2-role">Thesis Full Stack project using React.js</p>
+                    <p class="exp-company">University of Crete</p>
+                    <p class="exp-period" data-key="exp2-period">Nov 2023 – Nov 2024</p>
+                    <ul class="exp-desc" data-key="exp2-desc">
+                        <li>Hands on Experience</li>
+                        <li>Prepared and graded assignments and exams with the teaching team.</li>
+                        <li>Held office hours, boosting average student scores by 15%.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Contact ===== -->
+        <section id="contact" class="section">
+            <h2><i class="fas fa-envelope"></i> <span data-key="contact-title">Get In Touch</span></h2>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name" data-key="label-name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-key="label-email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" data-key="label-message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit" data-key="btn-send">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <p data-key="footer">© 2025 Kostas Detorakis • Built with passion & coffee ☕</p>
+    </footer>
+
+    <script>
+        /* ----------  SMOOTH SCROLL  ---------- */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e){
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior:'smooth' });
+            });
+        });
+
+        /* ----------  SECTION FADE-IN ON SCROLL  ---------- */
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+
+        /* ----------  TYPEWRITER EFFECT  ---------- */
+        window.addEventListener('load',()=>{
+            const title=document.querySelector('h1');
+            const txt=title.textContent; let i=0; title.textContent='';
+            (function type(){ if(i<txt.length){ title.textContent+=txt.charAt(i); i++; setTimeout(type,100);} })();
+        });
+
+        /* ----------  CONTACT FORM (DEMO)  ---------- */
+        function handleSubmit(e){
+            e.preventDefault();
+            const btn=e.target.querySelector('.btn-submit');
+            const original=btn.textContent;
+            btn.textContent='Sending…'; btn.disabled=true;
+            setTimeout(()=>{ alert('Thank you! I\'ll get back to you soon.'); e.target.reset(); btn.textContent=original; btn.disabled=false; },2000);
+        }
+
+        /* ----------  LANGUAGE TOGGLE  ---------- */
+        const langBtn=document.getElementById('lang-toggle');
+        let currentLang='en';
+        const translations={
+            el:{
+                'nav-about':'Σχετικά',
+                'nav-skills':'Δεξιότητες',
+                'nav-projects':'Έργα',
+                'nav-experience':'Εμπειρία',
+                'nav-contact':'Επικοινωνία',
+                'subtitle':'Junior Προγραμματιστής',
+                'email':'Email',
+                'resume':'Βιογραφικό',
+                'about-title':'Σχετικά με εμένα',
+                'about-text':'Αποφοίτησα πρόσφατα από το Πανεπιστήμιο Κρήτης, Τμήμα Επιστήμης Υπολογιστών. Κατά τη διάρκεια των σπουδών μου απέκτησα στέρεες γνώσεις βασικών εννοιών πληροφορικής και προγραμματισμού. Στην πτυχιακή μου εργασία υλοποίησα μια εφαρμογή full‑stack με React.js, JavaScript και CSS, ενώ χρησιμοποίησα RESTful κλήσεις API και MySQL βάση μέσω XAMPP. Αυτή η πορεία ενίσχυσε τις δεξιότητές μου σε όλο τον κύκλο ανάπτυξης λογισμικού.',
+                'skills-title':'Τεχνικές Δεξιότητες',
+                'skill-frontend':'Frontend',
+                'skill-backend':'Backend',
+                'skill-tools':'Εργαλεία & Άλλα',
+                'projects-title':'Επιλεγμένα Έργα',
+                'exp-title':'Επαγγελματική Εμπειρία',
+                'exp1-role':'Junior Software Engineer (Πρακτική Άσκηση)',
+                'exp1-period':'Οκτ 2024 – Σήμερα',
+                'exp1-desc':'<li>Ανάπτυξη εσωτερικού πίνακα αναλυτικών στοιχείων με React & Chart.js, βελτιώνοντας την ταχύτητα αναφορών κατά 30%.</li><li>Βελτιστοποίηση API endpoints, μειώνοντας το μέσο χρόνο απόκρισης από 600 ms σε 200 ms.</li><li>Συνεργασία με QA και Product σε Agile κύκλους.</li>',
+                'exp2-role':'Βοηθός Διδασκαλίας – Δομές Δεδομένων',
+                'exp2-period':'Σεπ 2023 – Ιουν 2024',
+                'exp2-desc':'<li>Υποστήριξη 50+ φοιτητών σε εργαστήρια C++ και πολυπλοκότητας αλγορίθμων.</li><li>Προετοιμασία και βαθμολόγηση ασκήσεων και εξετάσεων.</li><li>Ώρες γραφείου, αυξάνοντας τον μέσο βαθμό κατά 15%.</li>',
+                'contact-title':'Επικοινωνήστε μαζί μου',
+                'label-name':'Όνομα',
+                'label-email':'Email',
+                'label-message':'Μήνυμα',
+                'btn-send':'Αποστολή',
+                'footer':'© 2025 Κώστας Δετοράκης • Δημιουργήθηκε με πάθος & καφέ ☕'
+            }
+        };
+        function applyTranslations(lang){
+            document.querySelectorAll('[data-key]').forEach(el=>{
+                const key=el.getAttribute('data-key');
+                if(translations[lang] && translations[lang][key]){
+                    if(el.tagName.toLowerCase()==='ul') el.innerHTML=translations[lang][key];
+                    else el.textContent=translations[lang][key];
+                }
+            });
+        }
+        langBtn.addEventListener('click',()=>{
+            currentLang=currentLang==='en'?'el':'en';
+            applyTranslations(currentLang);
+            langBtn.textContent=currentLang==='en'? 'GR':'EN';
+        });
+    </script>
+</body>
+</html>
