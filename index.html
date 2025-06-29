@@ -310,17 +310,17 @@
         };
         function applyTranslations(lang){
             document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[lang] && translations[lang][key]) {
-            if (el.tagName === 'UL' || el.tagName === 'OL') {
-                // For lists, replace the inner HTML
-                el.innerHTML = translations[lang][key];
-            } else {
-                // For other elements, use textContent
-                el.textContent = translations[lang][key];
-            }
-        }
-    });
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName === 'UL' || el.tagName === 'OL') {
+                        // For lists, replace the inner HTML
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        // For other elements, use textContent
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
         }
         langBtn.addEventListener('click',()=>{
             currentLang=currentLang==='en'?'el':'en';
