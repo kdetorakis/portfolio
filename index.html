@@ -183,9 +183,13 @@
                     <p class="exp-company">University of Crete</p>
                     <p class="exp-period" data-key="exp2-period">Nov 2023 – Nov 2024</p>
                     <ul class="exp-desc" data-key="exp2-desc">
-                        <li>Hands on Experience</li>
-                        <li>Prepared and graded assignments and exams with the teaching team.</li>
-                        <li>Held office hours, boosting average student scores by 15%.</li>
+                        <li>Independently researched, designed, and developed a full-stack web application as part of my undergraduate thesis project.</li>
+                        <li>Built the frontend using React.js with a responsive, component-based architecture for optimal maintainability and scalability.</li>
+                        <li>Integrated XML data sources for dynamic information parsing and rendering.</li>
+                        <li>Implemented interactive map features using the Google Maps API for real-time location and data visualization.</li>
+                        <li>Developed backend services using PHP and XAMPP, including RESTful APIs for data exchange.</li>
+                        <li>Designed and managed a MySQL database for user data and application content, focusing on efficient schema design and data integrity.</li>
+                        <li>Conducted testing, debugging, and documentation to ensure usability and performance.</li>
                     </ul>
                 </div>
             </div>
@@ -193,6 +197,7 @@
 
         <!-- ===== Contact ===== -->
         <section id="contact" class="section">
+            <h4>(Work in progress..)</h4>
             <h2><i class="fas fa-envelope"></i> <span data-key="contact-title">Get In Touch</span></h2>
             <form class="contact-form" onsubmit="handleSubmit(event)">
                 <div class="form-group">
@@ -257,30 +262,44 @@
         /* ----------  LANGUAGE TOGGLE  ---------- */
         const langBtn=document.getElementById('lang-toggle');
         let currentLang='en';
+        
         const translations={
-            el:{
-                'nav-about':'Σχετικά',
-                'nav-skills':'Δεξιότητες',
-                'nav-projects':'Έργα',
-                'nav-experience':'Εμπειρία',
-                'nav-contact':'Επικοινωνία',
-                'subtitle':'Junior Προγραμματιστής',
-                'email':'Email',
-                'resume':'Βιογραφικό',
-                'about-title':'Σχετικά με εμένα',
-                'about-text':'Αποφοίτησα πρόσφατα από το Πανεπιστήμιο Κρήτης, Τμήμα Επιστήμης Υπολογιστών. Κατά τη διάρκεια των σπουδών μου απέκτησα στέρεες γνώσεις βασικών εννοιών πληροφορικής και προγραμματισμού. Στην πτυχιακή μου εργασία υλοποίησα μια εφαρμογή full‑stack με React.js, JavaScript και CSS, ενώ χρησιμοποίησα RESTful κλήσεις API και MySQL βάση μέσω XAMPP. Αυτή η πορεία ενίσχυσε τις δεξιότητές μου σε όλο τον κύκλο ανάπτυξης λογισμικού.',
-                'skills-title':'Τεχνικές Δεξιότητες',
-                'skill-frontend':'Frontend',
-                'skill-backend':'Backend',
-                'skill-tools':'Εργαλεία & Άλλα',
-                'projects-title':'Επιλεγμένα Έργα',
-                'exp-title':'Επαγγελματική Εμπειρία',
-                'exp1-role':'Junior Software Engineer (Πρακτική Άσκηση)',
-                'exp1-period':'Οκτ 2024 – Σήμερα',
-                'exp1-desc':'<li>Ανάπτυξη εσωτερικού πίνακα αναλυτικών στοιχείων με React & Chart.js, βελτιώνοντας την ταχύτητα αναφορών κατά 30%.</li><li>Βελτιστοποίηση API endpoints, μειώνοντας το μέσο χρόνο απόκρισης από 600 ms σε 200 ms.</li><li>Συνεργασία με QA και Product σε Agile κύκλους.</li>',
-                'exp2-role':'Βοηθός Διδασκαλίας – Δομές Δεδομένων',
-                'exp2-period':'Σεπ 2023 – Ιουν 2024',
-                'exp2-desc':'<li>Υποστήριξη 50+ φοιτητών σε εργαστήρια C++ και πολυπλοκότητας αλγορίθμων.</li><li>Προετοιμασία και βαθμολόγηση ασκήσεων και εξετάσεων.</li><li>Ώρες γραφείου, αυξάνοντας τον μέσο βαθμό κατά 15%.</li>',
+            el: {
+            'nav-about':'Σχετικά',
+            'nav-skills':'Δεξιότητες',
+            'nav-projects':'Έργα',
+            'nav-experience':'Εμπειρία',
+            'nav-contact':'Επικοινωνία',
+            'subtitle':'Junior Προγραμματιστής',
+            'email':'Email',
+            'resume':'Βιογραφικό',
+            'about-title':'Σχετικά με εμένα',
+            'about-text':'Αποφοίτησα πρόσφατα από το Πανεπιστήμιο Κρήτης, Τμήμα Επιστήμης Υπολογιστών. Κατά τη διάρκεια των σπουδών μου απέκτησα στέρεες γνώσεις βασικών εννοιών πληροφορικής και προγραμματισμού. Στην πτυχιακή μου εργασία υλοποίησα μια εφαρμογή full‑stack με React.js, JavaScript και CSS, ενώ χρησιμοποίησα RESTful κλήσεις API και MySQL βάση μέσω XAMPP. Αυτή η πορεία ενίσχυσε τις δεξιότητές μου σε όλο τον κύκλο ανάπτυξης λογισμικού.',
+            'skills-title':'Τεχνικές Δεξιότητες',
+            'skill-frontend':'Frontend',
+            'skill-backend':'Backend',
+            'skill-tools':'Εργαλεία & Άλλα',
+            'projects-title':'Επιλεγμένα Έργα',
+            'exp-title':'Επαγγελματική Εμπειρία',
+            'exp1-role':'Junior Software Engineer (Πρακτική Άσκηση)',
+            'exp1-period':'Ιούλιος 2023 – Οκτώβριος 2023',
+            'exp1-desc': `
+                <li>Έρευνα και παρουσίαση τεχνικών θεμάτων, συμπεριλαμβανομένης εισαγωγής στο Markdown και πρακτικές εφαρμογές του.</li>
+                <li>Ανάπτυξη εργαλείου μετατροπής διαγραμμάτων PlantUML σε JSON μορφή χρησιμοποιώντας TypeScript και Bash scripting.</li>
+                <li>Εισαγωγή στις έννοιες του Internet of Things (IoT) και επίδειξη προσαρμογής του Home Assistant για εταιρικές απαιτήσεις.</li>
+                <li>Απόκτηση πρακτικής εμπειρίας με εργαλεία και τεχνολογίες όπως InfluxDB, Grafana, Postman, ενσωμάτωση API και cURL.</li>
+            `,
+            'exp2-role':'Πτυχιακή Εργασία Full Stack με React.js',
+            'exp2-period':'Νοέμβριος 2023 – Νοέμβριος 2024',
+            'exp2-desc': `
+                <li>Ανεξάρτητη έρευνα, σχεδίαση και ανάπτυξη εφαρμογής full-stack ως μέρος της πτυχιακής εργασίας.</li>
+                <li>Υλοποίηση του frontend με React.js χρησιμοποιώντας component-based αρχιτεκτονική.</li>
+                <li>Ενσωμάτωση πηγών δεδομένων XML για δυναμική ανάλυση και απόδοση πληροφοριών.</li>
+                <li>Υλοποίηση διαδραστικών χαρτογραφικών λειτουργιών με Google Maps API.</li>
+                <li>Ανάπτυξη backend υπηρεσιών με PHP και XAMPP, συμπεριλαμβανομένων RESTful APIs.</li>
+                <li>Σχεδίαση και διαχείριση βάσης δεδομένων MySQL με έμφαση στην αποδοτικότητα.</li>
+                <li>Δοκιμές, αποσφαλμάτωση και τεκμηρίωση για διασφάλιση απόδοσης.</li>
+                `,
                 'contact-title':'Επικοινωνήστε μαζί μου',
                 'label-name':'Όνομα',
                 'label-email':'Email',
@@ -290,13 +309,18 @@
             }
         };
         function applyTranslations(lang){
-            document.querySelectorAll('[data-key]').forEach(el=>{
-                const key=el.getAttribute('data-key');
-                if(translations[lang] && translations[lang][key]){
-                    if(el.tagName.toLowerCase()==='ul') el.innerHTML=translations[lang][key];
-                    else el.textContent=translations[lang][key];
-                }
-            });
+            document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[lang] && translations[lang][key]) {
+            if (el.tagName === 'UL' || el.tagName === 'OL') {
+                // For lists, replace the inner HTML
+                el.innerHTML = translations[lang][key];
+            } else {
+                // For other elements, use textContent
+                el.textContent = translations[lang][key];
+            }
+        }
+    });
         }
         langBtn.addEventListener('click',()=>{
             currentLang=currentLang==='en'?'el':'en';
