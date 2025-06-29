@@ -257,7 +257,7 @@ h2 {
 /* ----------  EXPERIENCE  ---------- */
 .timeline {
     position: relative;
-    margin-left: 1rem;
+    margin-left: 2rem;
     padding-left: 1.5rem;
 }
 .timeline::before {
@@ -272,6 +272,7 @@ h2 {
 .exp-item {
     margin-bottom: 2rem;
     position: relative;
+    padding-left: 1rem;
 }
 .exp-item::before {
     content: "";
@@ -287,18 +288,8 @@ h2 {
 .exp-role { font-weight: 600; font-size: 1.1em; }
 .exp-company { color: var(--clr-primary-2); font-weight: 500; }
 .exp-period { font-size: .9em; color: var(--clr-dark-200); margin-bottom: .3rem; }
-.exp-desc {
-color: var(--clr-dark-200);
-margin-left: 1rem;
-padding-left: 1.5rem;
-list-style-type: disc;
-display: block;
-}
-
-.exp-desc li {
-display: list-item; /* Force bullet rendering */
-margin-bottom: 0.4rem;
-}
+.exp-desc { color: var(--clr-dark-200); margin-left: 1rem; line-height: 1.6; }
+.exp-desc li { margin-bottom: .4rem; }
 /* ----------  CONTACT  ---------- */
 .contact-form { display: grid; gap: 1.2rem; max-width: 600px; margin: 0 auto; }
 .form-group { display: flex; flex-direction: column; }
