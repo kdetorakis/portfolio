@@ -290,6 +290,7 @@ h2 {
 .exp-period { font-size: .9em; color: var(--clr-dark-200); margin-bottom: .3rem; }
 .exp-desc { color: var(--clr-dark-200); margin-left: 1rem; line-height: 1.6; }
 .exp-desc li { margin-bottom: .4rem; }
+
 /* ----------  CONTACT  ---------- */
 .contact-form { display: grid; gap: 1.2rem; max-width: 600px; margin: 0 auto; }
 .form-group { display: flex; flex-direction: column; }
